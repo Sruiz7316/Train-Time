@@ -1,0 +1,144 @@
+//This is where the database needs to eb made aware that a new child or changes have been made//Add more code//
+
+  // trainData.push({
+  //   train_Name: trainName,
+  //   destination: destination,
+  //   first_Train_Time: firstTrainTime,
+  //   frequency: frequency,
+  //   date_Added: dateAdded
+  // });
+
+  //Request the data from Firebase (All)//
+
+
+
+  let tbody = $("#train-table tbody");
+
+  // trainData
+  //   .orderByChild("dateAdded") //retriveving (all) array of data from the database//
+
+  // trainData.forEach(tuple);
+  // let row = $("<tr/>");
+  // row.append($(`<td>${tuple.trainName}</td>`));
+  // row.append($(`<td>${tuple.destination}</td>`));
+  // // row.append($(`<td>${tuple.firstTrainTime}</td>`));
+  // row.append($(`<td>${tuple.frequency}</td>`));
+  // var nextArrivalTime = moment(tuple.firstTrainTime)
+  //   .add(tuple.frequencyTime, "minute")
+  //   .format("m mm");
+  //Nextarrivaltime//
+  //current time < first train then next arrival is the first train//
+  // current time = first time so the next arrival is now//
+  //current time > first Time train, minutes away + current time//
+
+  //This is all to calculate minutes away//
+  //if current time < first train then next arrival is firsrt train - current time//
+  //Minutes Away = firsttraintime then arrival is now//
+  //current time is grater than first train then we take the difference which is (current time- first train time) % frequency = Minutes Away//
+
+//   tbody.append(row);
+// });
+
+// var newTrain = {
+//   trainName: trainName,
+//   destination: destination,
+//   firstTrainTime: firstTrainTime,
+//   frequency: frequency,
+//   dateAdded: firebase.database.ServerValue.TIMESTAMP
+// };
+
+$("#train-name-input").val("");
+$("#destination-input").val("");
+$("#firstTrain-input").val("");
+$("#frequency-input").val("");
+
+/////////////////////////////////////////////////////////
+
+var firstTrain_Time = $("#train-name-input")
+  .val()
+  .trim();
+var frequencyTime = $("#destination-input")
+  .val()
+  .trim();
+var nextArrivalTime = moment(firstTrain_Time)
+  .add(frequencyTime, "minute")
+  .format("m mm");
+var now = moment();
+var minutesAwayTime = moment(nextArrivalTime)
+  .subtract(now, "minute")
+  .format();
+
+// firebase
+//   .databse()
+//   .ref()
+//   .push({
+//     trainName: trainName,
+//     destination: destination,
+//     firstTrainTime: firstTrainTime,
+//     frequency: frequency,
+//     dateAdded: firebase.database.ServerValue.TIMESTAMP
+//   });
+
+//This is where I have the most issue// Is this creating a new html row value (Is is BUT you have the wrong location. Youll have to create the table row/column value dynamically// The values of the most recent query should be inputted on the top of the table but the question is how do I create the new row and the row values?
+
+// firebase
+//   .database()
+//   .ref()
+//   .orderByChild("dateAdded")
+//   .limiToLast(1)
+//   .on("child_added", function(snapshot) {
+//     trainData.ref().push(newTrain);
+// $("#trainName-table").html(snapshot.val().trainName);
+// $("#destination-table").html(snapshot.val().destination);
+// $("#firstTrainTime-table").html(snapshot.val().firstTrainTime);
+// $("#frequency-table").html(snapshot.val().frequency);
+//   });
+
+//Would I creae a foreever loop to get all the submissions to appear in a new row?//
+
+// firebase
+//   .database()
+//   .ref()
+//   .on
+
+// for (var i=0; i<; i++) {
+
+//   firebase
+//   .database()
+//   .ref()
+//   .orderByChild("dateAdded")
+//   .limiToLast(1)
+//   .on("child_added", function(snapshot) {
+//     $("row").append(
+//     "<td>" + snapshot.val().trainName + "</td>",
+//     "<td>" + snapshot.val().destination + "</td>",
+//     "<td>" + snapshot.val().firstTrainTime + "</td>",
+//     "<td>" + snapshot.val().frequency + "</td>");
+//   });
+// };
+
+//--------------------------------------------------------------------------------------------------------------------------
+
+//var count = 100;
+
+//Were Creating a listener//Listens for changes to be made to the firebase and and runs a functions if a change has been made//
+// firebase
+//   .database()
+//   .ref()
+//   .on("value", function(snapshot) {
+//count = snapshot.val().clicks;
+// $('#clickValue').html(count); (THe daabase value is upposed to appear in a unassined span tag called "clickValue" BUT YOU NEED TO CREATE ONE FIRST!)
+//   });
+
+//$('#clickButton').on('click',function(){
+//count--;
+//firebase.database().ref().set({
+//clicks:count
+//});
+//})
+
+//$('#restartButton).on('click',function(){
+//firebase.database().ref().set({
+//clicks:100
+//});
+

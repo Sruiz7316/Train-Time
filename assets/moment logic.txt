@@ -1,0 +1,5 @@
+next arrival = first train + frequency
+
+minutes away = next arrival - current time
+
+Make sure tha the "minutes away" and frequency are changed into minutes!
